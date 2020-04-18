@@ -2,7 +2,7 @@
 Thibault LEPEZ, Matthieu GEDEON, Daniil ROSSO
 L3 int - G2
 """
-from Graph import *
+from Graph import Graph
 from inputs import getFilePathFromGraphNumber
 from outputs import printMatrix
 
@@ -11,20 +11,20 @@ start = True
 while(start):
     filepath = getFilePathFromGraphNumber()
 
-    print("[i] Reading graph from " + filepath)
+    print("* Reading graph from " + filepath)
     graph = Graph(filename=filepath)
 
     print(graph)
 
-    print("[i] adjustement matrix")
+    print("* adjustement matrix")
     adjencyMatrix = graph.getAdjencyMatrix()
     printMatrix(adjencyMatrix)
 
-    print("[i] values matrix")
+    print("* values matrix")
     valueMatrix = graph.getValueMatrix()
     printMatrix(valueMatrix)
 
-    print("[i] Detecting cicles")
+    print("* Detecting cicles")
     if (graph.hasCicle()):
         print('The graph has a cicle')
     else:
