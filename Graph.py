@@ -1,13 +1,20 @@
 from inputs import readGraphFromFile
 
 
+def hasPredecessor(vertice, adjencyMatrix):
+    for line in adjencyMatrix:
+        if (line[vertice]):
+            return True
+    return False
+
+
 class Graph:
     """
     Class of a graph, defined by:
     - vertice number
     - edge number
-    - list of all the eged with there values as
-        [in, out, edge value]
+    - list of all the edges with there values as
+        [in, out, value]
     """
 
     def __init__(self, **keys):
@@ -40,6 +47,7 @@ class Graph:
         return adjencyMatrix
 
     def getValueMatrix(self):
+        """Function that compute the values matrix"""
         valueMatrix = []
 
         # Fill a empty matrix with None value
@@ -52,6 +60,25 @@ class Graph:
             valueMatrix[edge[0]][edge[1]] = edge[2]
 
         return valueMatrix
+
+    def hasCicle(self) -> bool:
+        adjencyMatrix = self.getAdjencyMatrix()
+        verticeList = list(range(self.verticeNumber))
+        finish = False
+        while (len(verticeList) != 0 and not finish):
+            removed = 0
+            for vertice in verticeList:
+                if (hasPredecessor(vertice, adjencyMatrix)):
+                    verticeList.remove(vertice)
+                    del adjencyMatrix[vertice]
+                    removed += 1
+            if(not removed):
+                finish = True
+
+        if (len(verticeList) == 0):
+            return False
+        else:
+            return True
 
     def __str__(self):
         """Function that display a graph"""
