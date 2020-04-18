@@ -1,11 +1,5 @@
 from inputs import readGraphFromFile
-
-
-def hasPredecessor(vertice, adjencyMatrix):
-    for line in adjencyMatrix:
-        if (line[vertice]):
-            return True
-    return False
+from graphUtils import *
 
 
 class Graph:
@@ -29,7 +23,7 @@ class Graph:
             self.edgeNumber = keys['edgeNumber']
             self.edgeList = keys['edgeList']
         else:
-            raise AttributeError("missing attribut")
+            raise AttributeError("missing attributes")
 
     def getAdjencyMatrix(self):
         """Function that compute the adjency matrix"""
@@ -62,18 +56,30 @@ class Graph:
         return valueMatrix
 
     def hasCicle(self) -> bool:
+        """Function that check if the graph has a cicle"""
+
+        print("** Using the method of elimination of entry points")
         adjencyMatrix = self.getAdjencyMatrix()
         verticeList = list(range(self.verticeNumber))
         finish = False
         while (len(verticeList) != 0 and not finish):
-            removed = 0
-            for vertice in verticeList:
-                if (hasPredecessor(vertice, adjencyMatrix)):
-                    verticeList.remove(vertice)
-                    del adjencyMatrix[vertice]
-                    removed += 1
-            if(not removed):
+            entryPointList = []
+            print("** List of vertice before removing entry point " +
+                  str(verticeList))
+
+            # Finding entry points
+            for index in range(len(verticeList)):
+                if (not hasPredecessor(index, adjencyMatrix)):
+                    entryPointList.append(index)
+
+            # If no entry point found we stop the search
+            if(len(entryPointList) == 0):
+                print("** No more removable entry point")
                 finish = True
+            else:
+                # Removing entry points
+                adjencyMatrix, verticeList = removeEntryPointFromMatrix(
+                    entryPointList, adjencyMatrix, verticeList)
 
         if (len(verticeList) == 0):
             return False
