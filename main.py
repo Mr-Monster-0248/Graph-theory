@@ -24,5 +24,11 @@ while(start):
     valueMatrix = graph.getValueMatrix()
     printMatrix(valueMatrix)
 
+    print("[i] Detecting cicles")
+    if (graph.hasCicle()):
+        print('The graph has a cicle')
+    else:
+        print("The graph has no cicle")
+
     choice = input("Start again with another graph? [y/n]: ")
     start = (choice == 'y' or choice == 'Y')
