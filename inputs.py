@@ -6,7 +6,6 @@ All inputs functions of the project
 def readGraphFromFile(filename: str):
     """Function to read graph from specified file"""
 
-    print("[i] Reading graph from " + filename)
     with open(filename, 'r') as myfile:
         lines = myfile.readlines()
 
@@ -22,6 +21,11 @@ def readGraphFromFile(filename: str):
         edgeList.append([inEdge, outEdge, value])
 
     return verticeNumber, edgeNumber, edgeList
+
+
+def getFilePathFromGraphNumber():
+    graphNumber = input("Enter the graph number: ")
+    return "./graphs/graph{}.txt".format(graphNumber)
 
 
 if (__name__ == "__main__"):
