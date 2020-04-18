@@ -1,4 +1,4 @@
-from input import readGraphFromFile
+from inputs import readGraphFromFile
 
 
 class Graph:
@@ -23,6 +23,35 @@ class Graph:
             self.edgeList = keys['edgeList']
         else:
             raise AttributeError("missing attribut")
+
+    def getAdjencyMatrix(self):
+        """Function that compute the adjency matrix"""
+        adjencyMatrix = []
+
+        # Fill a empty matrix with False
+        adjencyMatrix = [False] * self.verticeNumber
+        for i in range(self.verticeNumber):
+            adjencyMatrix[i] = [False] * self.verticeNumber
+
+        # Assign value to the matrix
+        for edge in self.edgeList:
+            adjencyMatrix[edge[0]][edge[1]] = True
+
+        return adjencyMatrix
+
+    def getValueMatrix(self):
+        valueMatrix = []
+
+        # Fill a empty matrix with None value
+        valueMatrix = [None] * self.verticeNumber
+        for i in range(self.verticeNumber):
+            valueMatrix[i] = [None] * self.verticeNumber
+
+        # Assign value to the matrix
+        for edge in self.edgeList:
+            valueMatrix[edge[0]][edge[1]] = edge[2]
+
+        return valueMatrix
 
     def __str__(self):
         """Function that display a graph"""
