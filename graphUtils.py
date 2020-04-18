@@ -4,7 +4,7 @@ Helpfull function to work with graphs
 
 
 def hasPredecessor(indexVertice, adjencyMatrix):
-    """Private function that check if a vertice has predecessor"""
+    """Function that check if a vertice has predecessor"""
     for i in range(len(adjencyMatrix[0])):
         if (adjencyMatrix[i][indexVertice]):
             return True
@@ -12,6 +12,7 @@ def hasPredecessor(indexVertice, adjencyMatrix):
 
 
 def removeEntryPointFromMatrix(entryPointList, adjencyMatrix, verticeList):
+    """Function to remove vertices from adjency matrix"""
     # Removing entry points
     for line in adjencyMatrix:
         for point in reversed(entryPointList):

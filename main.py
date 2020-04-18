@@ -16,11 +16,11 @@ while(start):
 
     print(graph)
 
-    print("* adjustement matrix")
+    print("* Adjency matrix")
     adjencyMatrix = graph.getAdjencyMatrix()
     printMatrix(adjencyMatrix)
 
-    print("* values matrix")
+    print("* Values matrix")
     valueMatrix = graph.getValueMatrix()
     printMatrix(valueMatrix)
 
@@ -29,6 +29,8 @@ while(start):
         print('The graph has a cicle')
     else:
         print("The graph has no cicle")
+
+    print(graph.getRanks())
 
     choice = input("Start again with another graph? [y/n]: ")
     start = (choice == 'y' or choice == 'Y')

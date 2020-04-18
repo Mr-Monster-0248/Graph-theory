@@ -18,10 +18,12 @@ class Graph:
             self.verticeNumber = temp[0]
             self.edgeNumber = temp[1]
             self.edgeList = temp[2]
+            self.verticeList = list(range(self.verticeNumber))
         elif (verticeNumber in keys and edgeNumber in keys and edgeList in keys):
             self.verticeNumber = keys['verticeNumber']
             self.edgeNumber = keys['edgeNumber']
             self.edgeList = keys['edgeList']
+            self.verticeList = list(range(self.verticeNumber))
         else:
             raise AttributeError("missing attributes")
 
@@ -60,7 +62,7 @@ class Graph:
 
         print("** Using the method of elimination of entry points")
         adjencyMatrix = self.getAdjencyMatrix()
-        verticeList = list(range(self.verticeNumber))
+        verticeList = self.verticeList
         finish = False
         while (len(verticeList) != 0 and not finish):
             entryPointList = []
@@ -81,10 +83,15 @@ class Graph:
                 adjencyMatrix, verticeList = removeEntryPointFromMatrix(
                     entryPointList, adjencyMatrix, verticeList)
 
+        print("** Remaining vertices: " + str(verticeList))
         if (len(verticeList) == 0):
             return False
         else:
             return True
+
+    def getRanks(self):
+        if(self.hasCicle()):
+            raise ValueError("Can't compute rank if graph has a cicle")
 
     def __str__(self):
         """Function that display a graph"""
