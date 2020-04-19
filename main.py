@@ -36,5 +36,11 @@ while(start):
         print("For following vertices \t" +
               str(list(range(graph.verticeNumber))))
 
+        print("\n# Checking if graph is a scheduling graph")
+        if (graph.isScheduling(ranks)):
+            print("The graph is a scheduling graph")
+        else:
+            print("The graph is not a scheduling graph")
+
     choice = input("\nStart again with another graph? [y/n]: ")
     start = (choice == 'y' or choice == 'Y')
