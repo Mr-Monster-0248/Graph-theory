@@ -33,8 +33,7 @@ while(start):
         print("# Finging the ranks")
         ranks = graph.getRanks()
         print("The ranks are \t\t" + str(ranks))
-        print("For following vertices \t" +
-              str(list(range(graph.verticeNumber))))
+        print("For following vertices \t" + str(graph.getVerticeList()))
 
         print("\n# Checking if graph is a scheduling graph")
         if (graph.isScheduling(ranks)):

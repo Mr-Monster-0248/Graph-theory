@@ -1,5 +1,6 @@
 from inputs import readGraphFromFile
 from graphUtils import *
+from copy import deepcopy
 
 
 class Graph:
@@ -9,23 +10,42 @@ class Graph:
     - edge number
     - list of all the edges with there values as
         [in, out, value]
+    - adjency matrix
+    - value matrix
     """
 
-    def __init__(self, **keys):
+    def __init__(self, **keys) -> object:
         """Constructor of Graph class"""
         if ("filename" in keys):
             temp = readGraphFromFile(keys['filename'])
             self.verticeNumber = temp[0]
             self.edgeNumber = temp[1]
             self.edgeList = temp[2]
+            self.verticeList = self._setVerticeList()
+            self.adjencyMatrix = self._setAdjencyMatrix()
+            self.valueMatrix = self._setValueMatrix()
         elif (verticeNumber in keys and edgeNumber in keys and edgeList in keys):
             self.verticeNumber = keys['verticeNumber']
             self.edgeNumber = keys['edgeNumber']
             self.edgeList = keys['edgeList']
+            self.verticeList = self._setVerticeList()
+            self.adjencyMatrix = self._setAdjencyMatrix()
+            self.valueMatrix = self._setValueMatrix()
         else:
             raise AttributeError("missing attributes")
 
-    def getAdjencyMatrix(self):
+    # ======== Getters =========
+    def getAdjencyMatrix(self) -> list:
+        return deepcopy(self.adjencyMatrix)
+
+    def getValueMatrix(self) -> list:
+        return deepcopy(self.valueMatrix)
+
+    def getVerticeList(self) -> list:
+        return deepcopy(self.verticeList)
+
+    # ======== Setters =========
+    def _setAdjencyMatrix(self) -> list:
         """Function that compute the adjency matrix"""
         adjencyMatrix = []
 
@@ -40,7 +60,7 @@ class Graph:
 
         return adjencyMatrix
 
-    def getValueMatrix(self):
+    def _setValueMatrix(self) -> list:
         """Function that compute the values matrix"""
         valueMatrix = []
 
@@ -55,12 +75,16 @@ class Graph:
 
         return valueMatrix
 
+    def _setVerticeList(self) -> list:
+        return list(range(self.verticeNumber))
+
+    # ========= Methods =========
     def hasCicle(self) -> bool:
         """Function that check if the graph has a cicle"""
 
         print("Using the method of elimination of entry points")
         adjencyMatrix = self.getAdjencyMatrix()
-        verticeList = list(range(self.verticeNumber))
+        verticeList = self.getVerticeList()
         finish = False
         while (len(verticeList) != 0 and not finish):
             entryPointList = []
@@ -89,7 +113,7 @@ class Graph:
 
     def getRanks(self) -> list:
         print("Using the method of elimination of entry points")
-        verticeList = list(range(self.verticeNumber))
+        verticeList = self.getVerticeList()
         currentRank = 0
         ranks = [0] * self.verticeNumber
         adjencyMatrix = self.getAdjencyMatrix()
@@ -149,7 +173,7 @@ class Graph:
             print("Every vertices have outgoing edges whith the same weight")
             return True
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Function that display a graph"""
         verticeNumberStr = str(self.verticeNumber) + " vertices\n"
         edgeNumberStr = str(self.edgeNumber) + " edges\n"
