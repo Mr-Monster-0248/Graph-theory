@@ -3,8 +3,7 @@ Thibault LEPEZ, Matthieu GEDEON, Daniil ROSSO
 L3 int - G2
 """
 from Graph import Graph
-from inputs import getFilePathFromGraphNumber
-from outputs import printMatrix
+from graphUtils import printMatrix
 
 start = True
 
