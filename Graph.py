@@ -87,7 +87,7 @@ class Graph:
         else:
             return True
 
-    def getRanks(self):
+    def getRanks(self) -> list:
         print("Using the method of elimination of entry points")
         verticeList = list(range(self.verticeNumber))
         currentRank = 0
@@ -105,12 +105,13 @@ class Graph:
                     entryPointList.append(index)
 
             for index in entryPointList:
-                ranks[index] = currentRank
-            currentRank += 1
+                ranks[verticeList[index]] = currentRank
 
             # Removing entry points
             adjencyMatrix, verticeList = removeEntryPointFromMatrix(
                 entryPointList, adjencyMatrix, verticeList)
+
+            currentRank += 1
 
         return ranks
 
