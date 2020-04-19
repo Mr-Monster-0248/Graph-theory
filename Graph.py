@@ -115,6 +115,40 @@ class Graph:
 
         return ranks
 
+    def isScheduling(self, ranks: list) -> bool:
+        """Check if a graph is a scheduling graph"""
+        valueMatrix = self.getValueMatrix()
+        if (getEntryPointNumber(ranks) > 1):
+            print("There is more than one entry point")
+            return False
+        else:
+            print("There is one entry point")
+
+        if (getEndPointNumber(ranks) > 1):
+            print("There is more than one exit point")
+            return False
+        else:
+            print("There is one exit point")
+
+        if (hasNegativeEdge(valueMatrix)):
+            print("There is a negative edge")
+            return False
+        else:
+            print("There is no negative edge")
+
+        if (not hasSameValueEdges(0, ranks.index(0), valueMatrix)):
+            print("There is a non negative outgoing edge from an entry point")
+            return False
+        else:
+            print("There is no non negative outgoing edge from an entry point")
+
+        if (hasSameWeight(valueMatrix)):
+            print("Some vertices have some outgoing edges with different weight")
+            return False
+        else:
+            print("Every vertices have outgoing edges whith the same weight")
+            return True
+
     def __str__(self):
         """Function that display a graph"""
         verticeNumberStr = str(self.verticeNumber) + " vertices\n"
