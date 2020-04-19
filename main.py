@@ -5,40 +5,43 @@ L3 int - G2
 from Graph import Graph
 from graphUtils import printMatrix
 
+
 start = True
 
 while(start):
-    filepath = getFilePathFromGraphNumber()
+    graphNumber = input("Enter the graph number: ")
+    filepath = "./graphs/graph{}.txt".format(graphNumber)
 
-    print("# Reading graph from " + filepath)
-    graph = Graph(filename=filepath)
-
-    print(graph)
-
-    print("# Adjency matrix")
-    adjencyMatrix = graph.getAdjencyMatrix()
-    printMatrix(adjencyMatrix)
-
-    print("# Values matrix")
-    valueMatrix = graph.getValueMatrix()
-    printMatrix(valueMatrix)
-
-    print("# Detecting cicles")
-    if (graph.hasCicle()):
-        print('The graph has a cicle\n')
+    try:
+        print("# Reading graph from " + filepath)
+        graph = Graph(filename=filepath)
+    except FileNotFoundError:
+        print("[ERROR] File not found")
     else:
-        print("The graph has no cicle\n")
+        print(graph)
 
-        print("# Finging the ranks")
-        ranks = graph.getRanks()
-        print("The ranks are \t\t" + str(ranks))
-        print("For following vertices \t" + str(graph.getVerticeList()))
+        print("# Adjency matrix")
+        printMatrix(graph.getAdjencyMatrix())
 
-        print("\n# Checking if graph is a scheduling graph")
-        if (graph.isScheduling(ranks)):
-            print("The graph is a scheduling graph")
+        print("# Values matrix")
+        printMatrix(graph.getValueMatrix())
+
+        print("# Detecting cicles")
+        if (graph.hasCicle()):
+            print('The graph has a cicle\n')
         else:
-            print("The graph is not a scheduling graph")
+            print("The graph has no cicle\n")
 
-    choice = input("\nStart again with another graph? [y/n]: ")
-    start = (choice == 'y' or choice == 'Y')
+            print("# Finging the ranks")
+            ranks = graph.getRanks()
+            print("The ranks are \t\t" + str(ranks))
+            print("For following vertices \t" + str(graph.getVerticeList()))
+
+            print("\n# Checking if graph is a scheduling graph")
+            if (graph.isScheduling(ranks)):
+                print("The graph is a scheduling graph")
+            else:
+                print("The graph is not a scheduling graph")
+    finally:
+        choice = input("\nStart again with another graph? [y/n]: ")
+        start = (choice == 'y' or choice == 'Y')
