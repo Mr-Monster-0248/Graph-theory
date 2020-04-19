@@ -11,26 +11,30 @@ start = True
 while(start):
     filepath = getFilePathFromGraphNumber()
 
-    print("* Reading graph from " + filepath)
+    print("# Reading graph from " + filepath)
     graph = Graph(filename=filepath)
 
     print(graph)
 
-    print("* Adjency matrix")
+    print("# Adjency matrix")
     adjencyMatrix = graph.getAdjencyMatrix()
     printMatrix(adjencyMatrix)
 
-    print("* Values matrix")
+    print("# Values matrix")
     valueMatrix = graph.getValueMatrix()
     printMatrix(valueMatrix)
 
-    print("* Detecting cicles")
+    print("# Detecting cicles")
     if (graph.hasCicle()):
-        print('The graph has a cicle')
+        print('The graph has a cicle\n')
     else:
-        print("The graph has no cicle")
+        print("The graph has no cicle\n")
 
-    print(graph.getRanks())
+        print("# Finging the ranks")
+        ranks = graph.getRanks()
+        print("The ranks are \t\t" + str(ranks))
+        print("For following vertices \t" +
+              str(list(range(graph.verticeNumber))))
 
-    choice = input("Start again with another graph? [y/n]: ")
+    choice = input("\nStart again with another graph? [y/n]: ")
     start = (choice == 'y' or choice == 'Y')

@@ -18,12 +18,10 @@ class Graph:
             self.verticeNumber = temp[0]
             self.edgeNumber = temp[1]
             self.edgeList = temp[2]
-            self.verticeList = list(range(self.verticeNumber))
         elif (verticeNumber in keys and edgeNumber in keys and edgeList in keys):
             self.verticeNumber = keys['verticeNumber']
             self.edgeNumber = keys['edgeNumber']
             self.edgeList = keys['edgeList']
-            self.verticeList = list(range(self.verticeNumber))
         else:
             raise AttributeError("missing attributes")
 
@@ -60,13 +58,13 @@ class Graph:
     def hasCicle(self) -> bool:
         """Function that check if the graph has a cicle"""
 
-        print("** Using the method of elimination of entry points")
+        print("Using the method of elimination of entry points")
         adjencyMatrix = self.getAdjencyMatrix()
-        verticeList = self.verticeList
+        verticeList = list(range(self.verticeNumber))
         finish = False
         while (len(verticeList) != 0 and not finish):
             entryPointList = []
-            print("** List of vertice before removing entry point " +
+            print("List of vertice before removing entry point " +
                   str(verticeList))
 
             # Finding entry points
@@ -76,22 +74,45 @@ class Graph:
 
             # If no entry point found we stop the search
             if(len(entryPointList) == 0):
-                print("** No more removable entry point")
+                print("No more removable entry point")
                 finish = True
             else:
                 # Removing entry points
                 adjencyMatrix, verticeList = removeEntryPointFromMatrix(
                     entryPointList, adjencyMatrix, verticeList)
 
-        print("** Remaining vertices: " + str(verticeList))
+        print("Remaining vertices: " + str(verticeList))
         if (len(verticeList) == 0):
             return False
         else:
             return True
 
     def getRanks(self):
-        if(self.hasCicle()):
-            raise ValueError("Can't compute rank if graph has a cicle")
+        print("Using the method of elimination of entry points")
+        verticeList = list(range(self.verticeNumber))
+        currentRank = 0
+        ranks = [0] * self.verticeNumber
+        adjencyMatrix = self.getAdjencyMatrix()
+        while (len(verticeList) != 0):
+            print("current rank: " + str(currentRank))
+            print("List of vertice before removing entry point " +
+                  str(verticeList))
+            entryPointList = []
+
+            # Finding entry points
+            for index in range(len(verticeList)):
+                if (not hasPredecessor(index, adjencyMatrix)):
+                    entryPointList.append(index)
+
+            for index in entryPointList:
+                ranks[index] = currentRank
+            currentRank += 1
+
+            # Removing entry points
+            adjencyMatrix, verticeList = removeEntryPointFromMatrix(
+                entryPointList, adjencyMatrix, verticeList)
+
+        return ranks
 
     def __str__(self):
         """Function that display a graph"""
