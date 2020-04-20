@@ -13,25 +13,34 @@ class Graph:
     - value matrix
     """
 
-    def __init__(self, **keys) -> object:
+    def __init__(self, verticeNumber, edgeNumber, edgeList) -> object:
         """Constructor of Graph class"""
-        if ("filename" in keys):
-            temp = readGraphFromFile(keys['filename'])
-            self.verticeNumber = temp[0]
-            self.edgeNumber = temp[1]
-            self.edgeList = temp[2]
-            self.verticeList = self._setVerticeList()
-            self.adjencyMatrix = self._setAdjencyMatrix()
-            self.valueMatrix = self._setValueMatrix()
-        elif (verticeNumber in keys and edgeNumber in keys and edgeList in keys):
-            self.verticeNumber = keys['verticeNumber']
-            self.edgeNumber = keys['edgeNumber']
-            self.edgeList = keys['edgeList']
-            self.verticeList = self._setVerticeList()
-            self.adjencyMatrix = self._setAdjencyMatrix()
-            self.valueMatrix = self._setValueMatrix()
-        else:
-            raise AttributeError("missing attributes")
+        self.verticeNumber = verticeNumber
+        self.edgeNumber = edgeNumber
+        self.edgeList = edgeList
+        self.verticeList = self._setVerticeList()
+        self.adjencyMatrix = self._setAdjencyMatrix()
+        self.valueMatrix = self._setValueMatrix()
+
+    @classmethod
+    def fromFile(cls, filename):
+        """Function to read graph from specified file"""
+
+        with open(filename, 'r') as myfile:
+            lines = myfile.readlines()
+
+        verticeNumber = int(lines[0])
+        edgeNumber = int(lines[1])
+
+        edgeList = []
+        for i in range(2, edgeNumber + 2):
+            line = lines[i].replace('\n', '').split(" ")
+            inEdge = int(line[0])
+            outEdge = int(line[1])
+            value = int(line[2])
+            edgeList.append([inEdge, outEdge, value])
+
+        return cls(verticeNumber, edgeNumber, edgeList)
 
     # ======== Getters =========
     def getAdjencyMatrix(self) -> list:

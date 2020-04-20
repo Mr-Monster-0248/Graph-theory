@@ -14,7 +14,7 @@ while(start):
 
     try:
         print("# Reading graph from " + filepath)
-        graph = Graph(filename=filepath)
+        graph = Graph.fromFile(filepath)
     except FileNotFoundError:
         print("[ERROR] File not found")
     else:
