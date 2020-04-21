@@ -32,7 +32,7 @@ while(start):
         else:
             print("The graph has no cicle\n")
 
-            print("# Finging the ranks")
+            print("# Finding the ranks")
             ranks = graph.getRanks()
             print("The ranks are \t\t" + str(ranks))
             print("For following vertices \t" + str(graph.getVerticeList()))

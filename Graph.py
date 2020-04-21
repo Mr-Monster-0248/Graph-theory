@@ -13,7 +13,7 @@ class Graph:
     - value matrix
     """
 
-    def __init__(self, verticeNumber, edgeNumber, edgeList) -> object:
+    def __init__(self, verticeNumber, edgeNumber, edgeList) -> Graph:
         """Constructor of Graph class"""
         self.verticeNumber = verticeNumber
         self.edgeNumber = edgeNumber
@@ -23,7 +23,7 @@ class Graph:
         self.valueMatrix = self._setValueMatrix()
 
     @classmethod
-    def fromFile(cls, filename):
+    def fromFile(cls, filename) -> Graph:
         """Function to read graph from specified file"""
 
         with open(filename, 'r') as myfile:

@@ -2,7 +2,6 @@
 Helpfull function to work with graphs
 """
 
-
 def printMatrix(matrix):
     print("\t", end='')
     for i in range(len(matrix[0])):
