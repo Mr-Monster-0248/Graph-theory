@@ -13,7 +13,7 @@ class Graph:
     - value matrix
     """
 
-    def __init__(self, verticeNumber, edgeNumber, edgeList) -> Graph:
+    def __init__(self, verticeNumber, edgeNumber, edgeList) -> object:
         """Constructor of Graph class"""
         self.verticeNumber = verticeNumber
         self.edgeNumber = edgeNumber
@@ -23,7 +23,7 @@ class Graph:
         self.valueMatrix = self._setValueMatrix()
 
     @classmethod
-    def fromFile(cls, filename) -> Graph:
+    def fromFile(cls, filename) -> object:
         """Function to read graph from specified file"""
 
         with open(filename, 'r') as myfile:
@@ -174,7 +174,7 @@ class Graph:
         else:
             print("There is no non negative outgoing edge from an entry point")
 
-        if (hasSameWeight(valueMatrix)):
+        if (not hasSameWeight(valueMatrix)):
             print("Some vertices have some outgoing edges with different weight")
             return False
         else:

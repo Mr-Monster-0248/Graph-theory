@@ -2,6 +2,7 @@
 Helpfull function to work with graphs
 """
 
+
 def printMatrix(matrix):
     print("\t", end='')
     for i in range(len(matrix[0])):
@@ -18,7 +19,7 @@ def printMatrix(matrix):
     print()
 
 
-def hasPredecessor(indexVertice, adjencyMatrix):
+def hasPredecessor(indexVertice, adjencyMatrix) -> bool:
     """Function that check if a vertice has predecessor"""
     for i in range(len(adjencyMatrix[0])):
         if (adjencyMatrix[i][indexVertice]):
@@ -26,7 +27,7 @@ def hasPredecessor(indexVertice, adjencyMatrix):
     return False
 
 
-def removeEntryPointFromMatrix(entryPointList, adjencyMatrix, verticeList):
+def removeEntryPointFromMatrix(entryPointList, adjencyMatrix, verticeList) -> tuple:
     """Function to remove vertices from adjency matrix"""
     # Removing entry points
     for line in adjencyMatrix:
