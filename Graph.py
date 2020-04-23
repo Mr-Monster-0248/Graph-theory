@@ -13,7 +13,7 @@ class Graph:
     - value matrix
     """
 
-    def __init__(self, verticeNumber, edgeNumber, edgeList) -> object:
+    def __init__(self, verticeNumber, edgeNumber, edgeList):
         """Constructor of Graph class"""
         self.verticeNumber = verticeNumber
         self.edgeNumber = edgeNumber
@@ -23,7 +23,7 @@ class Graph:
         self.valueMatrix = self._setValueMatrix()
 
     @classmethod
-    def fromFile(cls, filename) -> object:
+    def fromFile(cls, filename:str):
         """Function to read graph from specified file"""
 
         with open(filename, 'r') as myfile:
@@ -180,6 +180,12 @@ class Graph:
         else:
             print("Every vertices have outgoing edges whith the same weight")
             return True
+
+    def getCalendars(self, ranks: list):
+        earlyestDate = getEarlyestDate(self.getValueMatrix(), ranks)
+        latestDate = getLatestDate(self.getValueMatrix(), ranks, max(earlyestDate))
+        print("Earlyest time: ", earlyestDate)
+        print("Latest time:   ", latestDate)
 
     def __str__(self) -> str:
         """Function that display a graph"""

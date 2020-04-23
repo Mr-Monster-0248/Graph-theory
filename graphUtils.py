@@ -85,3 +85,39 @@ def findFirstEdgeValue(edgeList) -> int:
             return edge
     else:
         return -1
+
+
+########################
+#     Earlyest Time    #
+########################
+
+
+def getEarlyestDate(valueMatrix, ranks) -> list:
+    """Function that compute the earliest date for every vertices"""
+    earliestDate = [0] * len(ranks)
+    for rank in range(max(ranks)):
+        for rankId in range(1, len(ranks)):
+            if (ranks[rankId] == rank):
+                earlDateVertice = getEarlyestDatePred(
+                    rankId, valueMatrix, earliestDate)
+                earliestDate[rankId] = earlDateVertice
+        earliestDate[-1] = getEarlyestDatePred(rankId,
+                                               valueMatrix, earliestDate)
+    return earliestDate
+
+
+def getEarlyestDatePred(vertice, valueMatrix, earliestDate):
+    predecessors = getPredecessorId(vertice, valueMatrix)
+    listAllPredDate = []
+    for i in predecessors:
+        listAllPredDate.append(valueMatrix[i][vertice] + earliestDate[i])
+    return max(listAllPredDate)
+
+
+def getPredecessorId(vertice, valueMatrix):
+    pred = []
+    for i in range(len(valueMatrix[0])):
+        if (valueMatrix[i][vertice] != None):
+            pred.append(i)
+    return pred
+

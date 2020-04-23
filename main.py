@@ -39,7 +39,10 @@ while(start):
 
             print("\n# Checking if graph is a scheduling graph")
             if (graph.isScheduling(ranks)):
-                print("The graph is a scheduling graph")
+                print("The graph is a scheduling graph\n")
+
+                print('# Computing calendar')
+                graph.getCalendars(ranks)
             else:
                 print("The graph is not a scheduling graph")
     finally:
