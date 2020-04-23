@@ -3,7 +3,7 @@ Thibault LEPEZ, Matthieu GEDEON, Daniil ROSSO
 L3 int - G2
 """
 from Graph import Graph
-from graphUtils import printMatrix
+from graphUtils import printMatrix, printArray
 
 
 start = True
@@ -34,8 +34,10 @@ while(start):
 
             print("# Finding the ranks")
             ranks = graph.getRanks()
-            print("The ranks are \t\t" + str(ranks))
-            print("For following vertices \t" + str(graph.getVerticeList()))
+            print("The ranks are          ", end="")
+            printArray(ranks)
+            print("For following vertices ", end="")
+            printArray(graph.getVerticeList())
 
             print("\n# Checking if graph is a scheduling graph")
             if (graph.isScheduling(ranks)):

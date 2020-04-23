@@ -17,6 +17,15 @@ def printMatrix(matrix):
                 print(str(value) + '\t', end='')
         print('')
     print()
+    
+    
+def printArray(array):
+    print("[", end='')
+    for i in range(len(array)):
+        if (i == len(array) -1):
+            print("%2d" % array[i], end=']\n')
+        else:
+            print("%2d" % array[i], end=', ')
 
 
 def hasPredecessor(indexVertice, adjencyMatrix) -> bool:
@@ -92,21 +101,21 @@ def findFirstEdgeValue(edgeList) -> int:
 ########################
 
 
-def getEarlyestDate(valueMatrix, ranks) -> list:
+def getEarliestDate(valueMatrix, ranks) -> list:
     """Function that compute the earliest date for every vertices"""
     earliestDate = [0] * len(ranks)
     for rank in range(max(ranks)):
         for rankId in range(1, len(ranks)):
             if (ranks[rankId] == rank):
-                earlDateVertice = getEarlyestDatePred(
+                earlDateVertice = getEarliestDatePred(
                     rankId, valueMatrix, earliestDate)
                 earliestDate[rankId] = earlDateVertice
-        earliestDate[-1] = getEarlyestDatePred(rankId,
+        earliestDate[-1] = getEarliestDatePred(rankId,
                                                valueMatrix, earliestDate)
     return earliestDate
 
 
-def getEarlyestDatePred(vertice, valueMatrix, earliestDate):
+def getEarliestDatePred(vertice, valueMatrix, earliestDate):
     predecessors = getPredecessorId(vertice, valueMatrix)
     listAllPredDate = []
     for i in predecessors:
@@ -154,3 +163,10 @@ def getSuccessorId(vertice, valueMatrix):
         if (valueMatrix[vertice][i] != None):
             succ.append(i)
     return succ
+
+
+def getMargins(earliestDate:list, latestDate:list) -> list:
+    margins = []
+    for i in range(len(earliestDate)):
+        margins.append(latestDate[i] - earliestDate[i])
+    return margins

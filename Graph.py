@@ -96,8 +96,7 @@ class Graph:
         finish = False
         while (len(verticeList) != 0 and not finish):
             entryPointList = []
-            print("List of vertice before removing entry point " +
-                  str(verticeList))
+            print("List of vertice before removing entry point ", verticeList)
 
             # Finding entry points
             for index in range(len(verticeList)):
@@ -113,7 +112,7 @@ class Graph:
                 adjencyMatrix, verticeList = removeEntryPointFromMatrix(
                     entryPointList, adjencyMatrix, verticeList)
 
-        print("Remaining vertices: " + str(verticeList))
+        print("Remaining vertices: ", verticeList)
         if (len(verticeList) == 0):
             return False
         else:
@@ -126,9 +125,8 @@ class Graph:
         ranks = [0] * self.verticeNumber
         adjencyMatrix = self.getAdjencyMatrix()
         while (len(verticeList) != 0):
-            print("current rank: " + str(currentRank))
-            print("List of vertice before removing entry point " +
-                  str(verticeList))
+            print("current rank: ", currentRank)
+            print("List of vertice before removing entry point ", verticeList)
             entryPointList = []
 
             # Finding entry points
@@ -182,10 +180,16 @@ class Graph:
             return True
 
     def getCalendars(self, ranks: list):
-        earlyestDate = getEarlyestDate(self.getValueMatrix(), ranks)
-        latestDate = getLatestDate(self.getValueMatrix(), ranks, max(earlyestDate))
-        print("Earlyest time: ", earlyestDate)
-        print("Latest time:   ", latestDate)
+        earliestDate = getEarliestDate(self.getValueMatrix(), ranks)
+        latestDate = getLatestDate(
+            self.getValueMatrix(), ranks, max(earliestDate))
+        margins = getMargins(earliestDate, latestDate)
+        print("Earlyest time: ", end="")
+        printArray(earliestDate)
+        print("Latest time:   ", end="")
+        printArray(latestDate)
+        print("margins:       ", end="")
+        printArray(margins)
 
     def __str__(self) -> str:
         """Function that display a graph"""
