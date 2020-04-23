@@ -121,3 +121,36 @@ def getPredecessorId(vertice, valueMatrix):
             pred.append(i)
     return pred
 
+
+########################
+#      Latest Time     #
+########################
+
+
+def getLatestDate(valueMatrix, ranks, maxDate) -> list:
+    """Function that compute the earliest date for every vertices"""
+    latestDate = [0] * len(ranks)
+    latestDate[-1] = maxDate
+    for rank in range(max(ranks) -1, 0, -1):
+        for rankId in range(1, len(ranks)):
+            if (ranks[rankId] == rank):
+                earlDateVertice = getLatestDatePred(
+                    rankId, valueMatrix, latestDate)
+                latestDate[rankId] = earlDateVertice
+    return latestDate
+
+
+def getLatestDatePred(vertice, valueMatrix, latestDate):
+    successors = getSuccessorId(vertice, valueMatrix)
+    listAllSuccDate = []
+    for i in successors:
+        listAllSuccDate.append(latestDate[i] - valueMatrix[vertice][i])
+    return min(listAllSuccDate)
+
+
+def getSuccessorId(vertice, valueMatrix):
+    succ = []
+    for i in range(len(valueMatrix[vertice])):
+        if (valueMatrix[vertice][i] != None):
+            succ.append(i)
+    return succ
