@@ -180,14 +180,19 @@ class Graph:
             return True
 
     def getCalendars(self, ranks: list):
+        # Computing earliest time
         earliestDate = getEarliestDate(self.getValueMatrix(), ranks)
+        print("Earlyest time: ", end="")
+        printArray(earliestDate)
+        
+        # Comuting latest time
         latestDate = getLatestDate(
             self.getValueMatrix(), ranks, max(earliestDate))
         margins = getMargins(earliestDate, latestDate)
-        print("Earlyest time: ", end="")
-        printArray(earliestDate)
         print("Latest time:   ", end="")
         printArray(latestDate)
+        
+        # Computing margins
         print("margins:       ", end="")
         printArray(margins)
 

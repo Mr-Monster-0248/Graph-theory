@@ -1,0 +1,114 @@
+Enter the graph number: 4
+# Reading graph from ./graphs/Int2-5-graph4.txt
+15 vertices
+22 edges
+0 -> 1 = 0
+0 -> 2 = 0
+1 -> 3 = 4
+2 -> 6 = 5
+3 -> 4 = 4
+4 -> 5 = 1
+5 -> 14 = 9
+6 -> 7 = 2
+6 -> 5 = 2
+6 -> 12 = 2
+6 -> 11 = 2
+7 -> 8 = 5
+7 -> 12 = 5
+8 -> 5 = 5
+8 -> 9 = 5
+8 -> 12 = 5
+9 -> 10 = 9
+9 -> 12 = 9
+10 -> 12 = 2
+11 -> 13 = 19
+12 -> 14 = 5
+13 -> 14 = 1
+
+# Adjency matrix
+        0       1       2       3       4       5       6       7       8       9       10      11      12      13      14
+0       .       True    True    .       .       .       .       .       .       .       .       .       .       .       .
+1       .       .       .       True    .       .       .       .       .       .       .       .       .       .       .
+2       .       .       .       .       .       .       True    .       .       .       .       .       .       .       .
+3       .       .       .       .       True    .       .       .       .       .       .       .       .       .       .
+4       .       .       .       .       .       True    .       .       .       .       .       .       .       .       .
+5       .       .       .       .       .       .       .       .       .       .       .       .       .       .       True
+6       .       .       .       .       .       True    .       True    .       .       .       True    True    .       .
+7       .       .       .       .       .       .       .       .       True    .       .       .       True    .       .
+8       .       .       .       .       .       True    .       .       .       True    .       .       True    .       .
+9       .       .       .       .       .       .       .       .       .       .       True    .       True    .       .
+10      .       .       .       .       .       .       .       .       .       .       .       .       True    .       .
+11      .       .       .       .       .       .       .       .       .       .       .       .       .       True    .
+12      .       .       .       .       .       .       .       .       .       .       .       .       .       .       True
+13      .       .       .       .       .       .       .       .       .       .       .       .       .       .       True
+14      .       .       .       .       .       .       .       .       .       .       .       .       .       .       .
+
+# Values matrix
+        0       1       2       3       4       5       6       7       8       9       10      11      12      13      14
+0       .       .       .       .       .       .       .       .       .       .       .       .       .       .       .
+1       .       .       .       4       .       .       .       .       .       .       .       .       .       .       .
+2       .       .       .       .       .       .       5       .       .       .       .       .       .       .       .
+3       .       .       .       .       4       .       .       .       .       .       .       .       .       .       .
+4       .       .       .       .       .       1       .       .       .       .       .       .       .       .       .
+5       .       .       .       .       .       .       .       .       .       .       .       .       .       .       9
+6       .       .       .       .       .       2       .       2       .       .       .       2       2       .       .
+7       .       .       .       .       .       .       .       .       5       .       .       .       5       .       .
+8       .       .       .       .       .       5       .       .       .       5       .       .       5       .       .
+9       .       .       .       .       .       .       .       .       .       .       9       .       9       .       .
+10      .       .       .       .       .       .       .       .       .       .       .       .       2       .       .
+11      .       .       .       .       .       .       .       .       .       .       .       .       .       19      .
+12      .       .       .       .       .       .       .       .       .       .       .       .       .       .       5
+13      .       .       .       .       .       .       .       .       .       .       .       .       .       .       1
+14      .       .       .       .       .       .       .       .       .       .       .       .       .       .       .
+
+# Detecting cicles
+Using the method of elimination of entry points
+List of vertice before removing entry point  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+List of vertice before removing entry point  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+List of vertice before removing entry point  [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+List of vertice before removing entry point  [4, 5, 7, 8, 9, 10, 11, 12, 13, 14]
+List of vertice before removing entry point  [5, 8, 9, 10, 12, 13, 14]
+List of vertice before removing entry point  [5, 9, 10, 12, 14]
+List of vertice before removing entry point  [10, 12, 14]
+List of vertice before removing entry point  [12, 14]
+List of vertice before removing entry point  [14]
+Remaining vertices:  []
+The graph has no cicle
+
+# Finding the ranks
+Using the method of elimination of entry points
+current rank:  0
+List of vertice before removing entry point  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+current rank:  1
+List of vertice before removing entry point  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+current rank:  2
+List of vertice before removing entry point  [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+current rank:  3
+List of vertice before removing entry point  [4, 5, 7, 8, 9, 10, 11, 12, 13, 14]
+current rank:  4
+List of vertice before removing entry point  [5, 8, 9, 10, 12, 13, 14]
+current rank:  5
+List of vertice before removing entry point  [5, 9, 10, 12, 14]
+current rank:  6
+List of vertice before removing entry point  [10, 12, 14]
+current rank:  7
+List of vertice before removing entry point  [12, 14]
+current rank:  8
+List of vertice before removing entry point  [14]
+The ranks are          [ 0,  1,  1,  2,  3,  5,  2,  3,  4,  5,  6,  3,  7,  4,  8]
+For following vertices [ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14]
+
+# Checking if graph is a scheduling graph
+There is one entry point
+There is one exit point
+There is no negative edge
+There is no non negative outgoing edge from an entry point
+Every vertices have outgoing edges whith the same weight
+The graph is a scheduling graph
+
+# Computing calendar
+Earlyest time: [ 0,  0,  0,  4,  8, 17,  5,  7, 12, 17, 26,  7, 28, 26, 33]
+Latest time:   [ 0, 15,  0, 19, 23, 24,  5,  7, 12, 17, 26, 13, 28, 32, 33]
+margins:       [ 0, 15,  0, 15, 15,  7,  0,  0,  0,  0,  0,  6,  0,  6,  0]
+
+Start again with another graph? [y/n]:

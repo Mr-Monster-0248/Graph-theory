@@ -1,0 +1,100 @@
+Enter the graph number: 10
+# Reading graph from ./graphs/Int2-5-graph10.txt
+12 vertices
+20 edges
+0 -> 6 = 0
+0 -> 10 = 0
+0 -> 4 = 0
+0 -> 7 = 0
+1 -> 9 = 1
+2 -> 9 = 2
+2 -> 11 = 2
+3 -> 9 = 3
+4 -> 1 = 4
+4 -> 5 = 4
+5 -> 1 = 5
+5 -> 8 = 5
+6 -> 3 = 6
+7 -> 8 = 7
+7 -> 2 = 7
+8 -> 1 = 8
+8 -> 9 = 8
+9 -> 11 = 9
+10 -> 3 = 10
+10 -> 1 = 10
+
+# Adjency matrix
+        0       1       2       3       4       5       6       7       8       9       10      11
+0       .       .       .       .       True    .       True    True    .       .       True    .
+1       .       .       .       .       .       .       .       .       .       True    .       .
+2       .       .       .       .       .       .       .       .       .       True    .       True
+3       .       .       .       .       .       .       .       .       .       True    .       .
+4       .       True    .       .       .       True    .       .       .       .       .       .
+5       .       True    .       .       .       .       .       .       True    .       .       .
+6       .       .       .       True    .       .       .       .       .       .       .       .
+7       .       .       True    .       .       .       .       .       True    .       .       .
+8       .       True    .       .       .       .       .       .       .       True    .       .
+9       .       .       .       .       .       .       .       .       .       .       .       True
+10      .       True    .       True    .       .       .       .       .       .       .       .
+11      .       .       .       .       .       .       .       .       .       .       .       .
+
+# Values matrix
+        0       1       2       3       4       5       6       7       8       9       10      11
+0       .       .       .       .       .       .       .       .       .       .       .       .
+1       .       .       .       .       .       .       .       .       .       1       .       .
+2       .       .       .       .       .       .       .       .       .       2       .       2
+3       .       .       .       .       .       .       .       .       .       3       .       .
+4       .       4       .       .       .       4       .       .       .       .       .       .
+5       .       5       .       .       .       .       .       .       5       .       .       .
+6       .       .       .       6       .       .       .       .       .       .       .       .
+7       .       .       7       .       .       .       .       .       7       .       .       .
+8       .       8       .       .       .       .       .       .       .       8       .       .
+9       .       .       .       .       .       .       .       .       .       .       .       9
+10      .       10      .       10      .       .       .       .       .       .       .       .
+11      .       .       .       .       .       .       .       .       .       .       .       .
+
+# Detecting cicles
+Using the method of elimination of entry points
+List of vertice before removing entry point  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+List of vertice before removing entry point  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+List of vertice before removing entry point  [1, 2, 3, 5, 8, 9, 11]
+List of vertice before removing entry point  [1, 8, 9, 11]
+List of vertice before removing entry point  [1, 9, 11]
+List of vertice before removing entry point  [9, 11]
+List of vertice before removing entry point  [11]
+Remaining vertices:  []
+The graph has no cicle
+
+# Finding the ranks
+Using the method of elimination of entry points
+current rank:  0
+List of vertice before removing entry point  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+current rank:  1
+List of vertice before removing entry point  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+current rank:  2
+List of vertice before removing entry point  [1, 2, 3, 5, 8, 9, 11]
+current rank:  3
+List of vertice before removing entry point  [1, 8, 9, 11]
+current rank:  4
+List of vertice before removing entry point  [1, 9, 11]
+current rank:  5
+List of vertice before removing entry point  [9, 11]
+current rank:  6
+List of vertice before removing entry point  [11]
+The ranks are          [ 0,  4,  2,  2,  1,  2,  1,  1,  3,  5,  1,  6]
+For following vertices [ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11]
+
+# Checking if graph is a scheduling graph
+There is one entry point
+There is one exit point
+There is no negative edge
+There is no non negative outgoing edge from an entry point
+Every vertices have outgoing edges whith the same weight
+The graph is a scheduling graph
+
+# Computing calendar
+Earlyest time: [ 0, 17,  7, 10,  0,  4,  0,  0,  9, 18,  0, 27]
+Latest time:   [ 0, 17, 16, 15,  0,  4,  9,  2,  9, 18,  5, 27]
+margins:       [ 0,  0,  9,  5,  0,  0,  9,  2,  0,  0,  5,  0]
+
+Start again with another graph? [y/n]:

@@ -1,0 +1,62 @@
+Enter the graph number: 3
+# Reading graph from ./graphs/Int2-5-graph3.txt
+10 vertices
+18 edges
+0 -> 1 = 0
+0 -> 2 = 0
+1 -> 5 = 2
+1 -> 4 = 2
+1 -> 2 = 2
+2 -> 4 = 3
+2 -> 8 = 3
+2 -> 3 = 3
+3 -> 7 = 5
+3 -> 9 = 5
+4 -> 6 = 6
+4 -> 5 = 6
+4 -> 8 = 6
+5 -> 6 = 2
+5 -> 7 = 2
+6 -> 4 = 6
+7 -> 8 = 6
+8 -> 9 = 1
+
+# Adjency matrix
+        0       1       2       3       4       5       6       7       8       9
+0       .       True    True    .       .       .       .       .       .       .
+1       .       .       True    .       True    True    .       .       .       .
+2       .       .       .       True    True    .       .       .       True    .
+3       .       .       .       .       .       .       .       True    .       True
+4       .       .       .       .       .       True    True    .       True    .
+5       .       .       .       .       .       .       True    True    .       .
+6       .       .       .       .       True    .       .       .       .       .
+7       .       .       .       .       .       .       .       .       True    .
+8       .       .       .       .       .       .       .       .       .       True
+9       .       .       .       .       .       .       .       .       .       .
+
+# Values matrix
+        0       1       2       3       4       5       6       7       8       9
+0       .       .       .       .       .       .       .       .       .       .
+1       .       .       2       .       2       2       .       .       .       .
+2       .       .       .       3       3       .       .       .       3       .
+3       .       .       .       .       .       .       .       5       .       5
+4       .       .       .       .       .       6       6       .       6       .
+5       .       .       .       .       .       .       2       2       .       .
+6       .       .       .       .       6       .       .       .       .       .
+7       .       .       .       .       .       .       .       .       6       .
+8       .       .       .       .       .       .       .       .       .       1
+9       .       .       .       .       .       .       .       .       .       .
+
+# Detecting cicles
+Using the method of elimination of entry points
+List of vertice before removing entry point  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+List of vertice before removing entry point  [1, 2, 3, 4, 5, 6, 7, 8, 9]
+List of vertice before removing entry point  [2, 3, 4, 5, 6, 7, 8, 9]
+List of vertice before removing entry point  [3, 4, 5, 6, 7, 8, 9]
+List of vertice before removing entry point  [4, 5, 6, 7, 8, 9]
+No more removable entry point
+Remaining vertices:  [4, 5, 6, 7, 8, 9]
+The graph has a cicle
+
+
+Start again with another graph? [y/n]:

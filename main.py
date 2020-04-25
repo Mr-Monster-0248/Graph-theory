@@ -10,7 +10,7 @@ start = True
 
 while(start):
     graphNumber = input("Enter the graph number: ")
-    filepath = "./graphs/graph{}.txt".format(graphNumber)
+    filepath = "./graphs/Int2-5-graph{}.txt".format(graphNumber)
 
     try:
         print("# Reading graph from " + filepath)
